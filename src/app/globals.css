@@ -1,26 +1,292 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * CURDWORKS design system
+ * ------------------------------------------------------------------
+ * Brand palette:  cream (base) · paper · cave (dark) · rind (accent)
+ *                 wax (highlight) · mold (cool detail)
+ * Sections switch themes with .theme-* classes, which redefine the
+ * shadcn semantic tokens — every component inside adapts on its own.
+ */
+
+@custom-variant dark (&:is(.theme-cave *, .theme-cave));
 
 @theme inline {
+  /* fonts (variables are injected by next/font in the root layout) */
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-heading: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* raw brand colors — usable as bg-rind, text-cave, … */
+  --color-cream: var(--brand-cream);
+  --color-paper: var(--brand-paper);
+  --color-cave: var(--brand-cave);
+  --color-cave-soft: var(--brand-cave-soft);
+  --color-rind: var(--brand-rind);
+  --color-rind-deep: var(--brand-rind-deep);
+  --color-wax: var(--brand-wax);
+  --color-mold: var(--brand-mold);
+
+  /* semantic tokens (shadcn) */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --brand-cream: oklch(0.945 0.024 84);
+  --brand-paper: oklch(0.975 0.012 84);
+  --brand-cave: oklch(0.205 0.014 60);
+  --brand-cave-soft: oklch(0.27 0.016 60);
+  --brand-rind: oklch(0.6 0.155 41);
+  --brand-rind-deep: oklch(0.5 0.14 38);
+  --brand-wax: oklch(0.8 0.135 80);
+  --brand-mold: oklch(0.56 0.05 235);
+
+  --radius: 0.75rem;
+  --header-h: 4.5rem;
+  --gutter: clamp(1rem, 3vw, 2.5rem);
+}
+
+/* Default / light: cream */
+:root,
+.theme-cream {
+  --background: var(--brand-cream);
+  --foreground: var(--brand-cave);
+  --card: var(--brand-paper);
+  --card-foreground: var(--brand-cave);
+  --popover: var(--brand-paper);
+  --popover-foreground: var(--brand-cave);
+  --primary: var(--brand-cave);
+  --primary-foreground: var(--brand-cream);
+  --secondary: oklch(0.9 0.03 82);
+  --secondary-foreground: var(--brand-cave);
+  --muted: oklch(0.91 0.026 82);
+  --muted-foreground: oklch(0.45 0.02 60);
+  --accent: var(--brand-rind);
+  --accent-foreground: var(--brand-paper);
+  --destructive: oklch(0.55 0.2 27);
+  --border: oklch(0.205 0.014 60 / 14%);
+  --input: oklch(0.205 0.014 60 / 22%);
+  --ring: var(--brand-rind);
+}
+
+.theme-paper {
+  --background: var(--brand-paper);
+  --card: var(--brand-cream);
+}
+
+.theme-cave {
+  --background: var(--brand-cave);
+  --foreground: var(--brand-cream);
+  --card: var(--brand-cave-soft);
+  --card-foreground: var(--brand-cream);
+  --popover: var(--brand-cave-soft);
+  --popover-foreground: var(--brand-cream);
+  --primary: var(--brand-cream);
+  --primary-foreground: var(--brand-cave);
+  --secondary: var(--brand-cave-soft);
+  --secondary-foreground: var(--brand-cream);
+  --muted: oklch(0.3 0.016 60);
+  --muted-foreground: oklch(0.72 0.02 80);
+  --accent: var(--brand-wax);
+  --accent-foreground: var(--brand-cave);
+  --border: oklch(0.945 0.024 84 / 14%);
+  --input: oklch(0.945 0.024 84 / 22%);
+  --ring: var(--brand-wax);
+}
+
+.theme-rind {
+  --background: var(--brand-rind);
+  --foreground: var(--brand-paper);
+  --card: var(--brand-rind-deep);
+  --card-foreground: var(--brand-paper);
+  --primary: var(--brand-cave);
+  --primary-foreground: var(--brand-cream);
+  --secondary: var(--brand-rind-deep);
+  --secondary-foreground: var(--brand-paper);
+  --muted: var(--brand-rind-deep);
+  --muted-foreground: oklch(0.93 0.04 70);
+  --accent: var(--brand-wax);
+  --accent-foreground: var(--brand-cave);
+  --border: oklch(0.975 0.012 84 / 25%);
+  --input: oklch(0.975 0.012 84 / 35%);
+  --ring: var(--brand-wax);
+}
+
+.theme-wax {
+  --background: var(--brand-wax);
+  --foreground: var(--brand-cave);
+  --card: oklch(0.86 0.11 82);
+  --muted-foreground: oklch(0.36 0.04 60);
+  --accent: var(--brand-rind);
+  --border: oklch(0.205 0.014 60 / 18%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply bg-cream font-sans;
+    scroll-padding-top: var(--header-h);
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  /* Film-grain overlay: gives flat brand colors a tactile, printed feel */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.07;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  ::selection {
+    background: var(--brand-wax);
+    color: var(--brand-cave);
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* ---------- Typography scale ---------- */
+
+@utility display-hero {
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 11.5vw, 12rem);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  font-weight: 380;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+}
+
+@utility display-1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6.4vw, 6.75rem);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+  font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 144;
+}
+
+@utility display-2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-weight: 420;
+  font-variation-settings: "SOFT" 80, "opsz" 96;
+}
+
+@utility display-3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.3vw, 2.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 450;
+  font-variation-settings: "SOFT" 60, "opsz" 48;
+}
+
+@utility lead {
+  font-size: clamp(1.075rem, 1.35vw, 1.35rem);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+}
+
+@utility mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Serif italic accent inside headings: <em> */
+@utility accent-em {
+  & em {
+    font-style: italic;
+    font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+    color: var(--accent);
+  }
+}
+
+/* ---------- Layout helpers ---------- */
+
+@utility container-site {
+  width: 100%;
+  max-width: 96rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Brand motifs ---------- */
+
+/* A cheese "eye": a circular hole with soft inner shadow */
+@utility hole {
+  border-radius: 9999px;
+  box-shadow:
+    inset 0 0.35em 0.9em oklch(0.205 0.014 60 / 22%),
+    inset 0 -0.15em 0.35em oklch(1 0 0 / 35%);
+}
+
+/* Hatched placeholder surface for image slots */
+@utility hatch {
+  background-color: color-mix(in oklch, var(--foreground) 6%, var(--background));
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in oklch, var(--foreground) 9%, transparent) 0 1px,
+    transparent 1px 11px
+  );
+}
+
+/* Dotted leader line used in spec lists */
+@utility leader {
+  flex: 1;
+  min-width: 1.5rem;
+  border-bottom: 1px dotted color-mix(in oklch, var(--foreground) 35%, transparent);
+  transform: translateY(-0.3em);
 }
