@@ -1,4 +1,5 @@
 import type { Dictionary } from "../types"
+import home from "./home"
 
 const en: Dictionary = {
   meta: {
@@ -66,6 +67,7 @@ const en: Dictionary = {
     copyright: "© 2026 Curdworks GmbH. All wheels reserved.",
     backToTop: "Back to top",
   },
+  home,
 }
 
 export default en

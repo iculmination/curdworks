@@ -83,6 +83,8 @@
   --radius: 0.75rem;
   --header-h: 4.5rem;
   --gutter: clamp(1rem, 3vw, 2.5rem);
+  /* left offset that aligns full-bleed tracks with .container-site */
+  --track-pad: max(var(--gutter), calc((100vw - 96rem) / 2 + var(--gutter)));
 }
 
 /* Default / light: cream */
@@ -289,4 +291,19 @@
   min-width: 1.5rem;
   border-bottom: 1px dotted color-mix(in oklch, var(--foreground) 35%, transparent);
   transform: translateY(-0.3em);
+}
+
+/* Thin, brand-tinted scrollbar for horizontal tracks */
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--foreground) 30%, transparent) transparent;
+}
+
+/* Hero headline: as big as display-hero allows, but never wider than the
+   viewport. --em-sm / --em-lg = estimated width of the longest line in em. */
+@utility hero-fit {
+  font-size: min(clamp(3.4rem, 11.5vw, 12rem), calc((100vw - 2 * var(--gutter)) / var(--em-sm, 6)));
+  @media (width >= 48rem) {
+    font-size: min(clamp(3.4rem, 11.5vw, 12rem), calc((100vw - 2 * var(--gutter)) / var(--em-lg, 6)));
+  }
 }

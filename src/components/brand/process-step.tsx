@@ -27,7 +27,7 @@ export function ProcessStep({ step, className }: { step: ProcessStepData; classN
         >
           {step.number}
         </span>
-        <ImageSlot label={step.image} shape="hole" className="w-24 shrink-0 md:w-28" />
+        <ImageSlot label={step.image} shape="hole" compact className="w-24 shrink-0 md:w-28" />
       </div>
       <h3 className="display-3">{step.title}</h3>
       <p className="text-pretty text-muted-foreground">{step.text}</p>
