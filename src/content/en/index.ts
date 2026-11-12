@@ -1,5 +1,6 @@
 import type { Dictionary } from "../types"
 import about from "./about"
+import careers from "./careers"
 import home from "./home"
 import technologies from "./technologies"
 
@@ -72,6 +73,7 @@ const en: Dictionary = {
   home,
   about,
   technologies,
+  careers,
 }
 
 export default en

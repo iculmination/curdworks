@@ -1,16 +1,32 @@
-import { Section, Container } from "@/components/brand/section"
-import { SectionHeading } from "@/components/brand/section-heading"
+import type { Metadata } from "next"
+
+import { CtaBand } from "@/components/brand/cta-band"
+import { CareersApply } from "@/components/sections/careers/apply"
+import { CareersHero } from "@/components/sections/careers/hero"
+import { CareersJobs } from "@/components/sections/careers/jobs"
+import { CareersPerks } from "@/components/sections/careers/perks"
+import { CareersProcess } from "@/components/sections/careers/process"
+import type { Locale } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
 
-// Placeholder — real content lands in the next stage.
+export async function generateMetadata({ params }: PageProps<"/[lang]/careers">): Promise<Metadata> {
+  const { lang } = await params
+  const { careers } = await getDictionary(lang)
+  return { title: careers.meta.title, description: careers.meta.description }
+}
+
 export default async function CareersPage({ params }: PageProps<"/[lang]/careers">) {
   const { lang } = await params
-  const t = await getDictionary(lang)
+  const { careers: t } = await getDictionary(lang)
+
   return (
-    <Section fullscreen name="careers-placeholder">
-      <Container>
-        <SectionHeading as="h1" eyebrow="WIP" title={t.nav.careers} />
-      </Container>
-    </Section>
+    <>
+      <CareersHero t={t.hero} openCount={t.jobs.items.length} />
+      <CareersPerks t={t.perks} />
+      <CareersJobs t={t.jobs} />
+      <CareersProcess t={t.process} />
+      <CareersApply t={t.apply} jobs={t.jobs.items} />
+      <CtaBand t={t.cta} lang={lang as Locale} theme="rind" />
+    </>
   )
 }

@@ -136,6 +136,71 @@ export type TechDict = {
   cta: CtaBandData
 }
 
+export type CareerJob = {
+  id: string
+  /** department id — must match one of `jobs.departments` */
+  dept: string
+  title: string
+  location: string
+  type: string
+  summary: string
+  about: string
+  tasks: string[]
+  profile: string[]
+  specs: Spec[]
+}
+
+export type CareersDict = {
+  meta: { title: string; description: string }
+  hero: {
+    eyebrow: string
+    title: string
+    lead: string
+    primaryCta: string
+    secondaryCta: string
+    images: [string, string]
+    stats: StatData[]
+  }
+  perks: SectionIntro & {
+    items: { title: string; text: string; tag: string }[]
+    image: string
+    quote: QuoteData
+  }
+  jobs: SectionIntro & {
+    allLabel: string
+    filterLabel: string
+    departments: { id: string; label: string }[]
+    items: CareerJob[]
+    detail: { about: string; tasks: string; profile: string; apply: string; close: string }
+    openApplication: { title: string; text: string; cta: string }
+  }
+  process: SectionIntro & {
+    steps: { number: string; title: string; text: string; duration: string }[]
+    promise: string
+  }
+  apply: SectionIntro & {
+    fields: {
+      name: string
+      email: string
+      position: string
+      positionPlaceholder: string
+      openPosition: string
+      link: string
+      linkPlaceholder: string
+      message: string
+      messagePlaceholder: string
+      cv: string
+      cvHint: string
+      consent: string
+      optional: string
+    }
+    submit: string
+    success: { title: string; text: string; reset: string }
+    contact: { title: string; name: string; role: string; email: string }
+  }
+  cta: CtaBandData
+}
+
 export type Dictionary = {
   meta: {
     siteName: string
@@ -168,4 +233,5 @@ export type Dictionary = {
   home: HomeDict
   about: AboutDict
   technologies: TechDict
+  careers: CareersDict
 }
