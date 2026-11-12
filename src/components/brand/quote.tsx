@@ -5,7 +5,7 @@ export type QuoteData = { text: string; author: string; source: string }
 /** Press / testimonial quote with oversized serif quotation mark. */
 export function Quote({ quote, className }: { quote: QuoteData; className?: string }) {
   return (
-    <figure className={cn("relative flex flex-col gap-6 pt-10", className)}>
+    <figure data-reveal className={cn("relative flex flex-col gap-6 pt-10", className)}>
       <span
         aria-hidden
         className="absolute -top-4 left-0 font-display text-[7rem] leading-none text-accent"

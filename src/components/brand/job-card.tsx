@@ -20,6 +20,7 @@ export function JobCard({
 }: { job: JobData } & React.ComponentProps<"button">) {
   return (
     <button
+      data-reveal
       type="button"
       className={cn(
         "group relative grid w-full gap-4 border-t border-border py-7 text-left transition-colors outline-none hover:bg-foreground/[0.03] focus-visible:ring-3 focus-visible:ring-ring/50 md:grid-cols-[minmax(0,6fr)_minmax(0,3fr)_minmax(0,2fr)_auto] md:items-center md:gap-8 md:px-4",

@@ -38,7 +38,10 @@ export function SiteHeader({ lang, nav, header }: Props) {
   }
 
   return (
-    <header className="theme-cream pointer-events-none fixed inset-x-0 top-0 z-50 bg-transparent">
+    <header
+      data-site-header
+      className="theme-cream pointer-events-none fixed inset-x-0 top-0 z-50 bg-transparent transition-[translate] duration-500 ease-out data-hidden:-translate-y-[130%] has-focus-visible:translate-y-0"
+    >
       <a
         href="#main"
         className="pointer-events-auto sr-only rounded-full bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:absolute focus:top-3 focus:left-3"

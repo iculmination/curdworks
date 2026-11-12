@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
 import type { CareersDict } from "@/content/types"
+import { scrollToTarget } from "@/components/motion/smooth-scroll"
 import { APPLY_EVENT, OPEN_APPLICATION } from "./apply-bus"
 
 type Props = {
@@ -35,7 +36,8 @@ export function ApplyForm({ t, positions }: Props) {
       setPosition((e as CustomEvent<string>).detail)
       // wait for the sheet to close before scrolling
       window.setTimeout(() => {
-        document.getElementById("apply")?.scrollIntoView({ behavior: "smooth", block: "start" })
+        const section = document.getElementById("apply")
+        if (section) scrollToTarget(section)
         nameRef.current?.focus({ preventScroll: true })
       }, 120)
     }

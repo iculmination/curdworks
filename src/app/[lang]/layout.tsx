@@ -3,6 +3,7 @@ import { Fraunces, Instrument_Sans, JetBrains_Mono } from "next/font/google"
 
 import { SiteFooter } from "@/components/layout/site-footer"
 import { SiteHeader } from "@/components/layout/site-header"
+import { SmoothScroll } from "@/components/motion/smooth-scroll"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { getDictionary } from "@/i18n/dictionaries"
 import { locales, type Locale } from "@/i18n/config"
@@ -51,8 +52,20 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
       lang={locale}
       id="top"
       className={`${fraunces.variable} ${instrument.variable} ${jetbrains.variable}`}
+      // the inline script below adds the "motion" class before hydration
+      suppressHydrationWarning
     >
+      <head>
+        {/* Gate intro animations before first paint (no flash of the final state).
+            Skipped for reduced motion; CSS has a timed fallback if JS never runs. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if(matchMedia("(prefers-reduced-motion: no-preference)").matches)document.documentElement.classList.add("motion")`,
+          }}
+        />
+      </head>
       <body className="min-h-svh">
+        <SmoothScroll />
         <TooltipProvider>
           <SiteHeader lang={locale} nav={t.nav} header={t.header} />
           <main id="main">{children}</main>

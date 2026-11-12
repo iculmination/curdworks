@@ -8,6 +8,7 @@ import { HomeProcess } from "@/components/sections/home/process"
 import { HomeVisit } from "@/components/sections/home/visit"
 import type { Locale } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
+import { Motion } from "@/components/motion/motion"
 import { pageMetadata } from "@/lib/metadata"
 
 export async function generateMetadata({ params }: PageProps<"/[lang]">): Promise<Metadata> {
@@ -35,6 +36,8 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
       <HomeCollection t={home.collection} lang={locale} />
       <HomePress t={home.press} />
       <HomeVisit t={home.visit} lang={locale} />
+      {/* after the page hydrates: wire up GSAP */}
+      <Motion />
     </>
   )
 }

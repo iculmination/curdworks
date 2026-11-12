@@ -25,7 +25,7 @@ export function TechFaq({ t }: { t: TechDict["faq"] }) {
 
         <Accordion className="lg:col-span-7 lg:col-start-6">
           {t.items.map((item, i) => (
-            <AccordionItem key={item.q} value={`q${i}`}>
+            <AccordionItem data-reveal key={item.q} value={`q${i}`}>
               <AccordionTrigger>{item.q}</AccordionTrigger>
               <AccordionContent>
                 <p>{item.a}</p>

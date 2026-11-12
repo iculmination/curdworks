@@ -19,7 +19,7 @@ export function TechHero({ t, features }: { t: TechDict["hero"]; features: TechD
       <Container className="flex flex-col gap-16">
         <div className="grid items-center gap-12 lg:grid-cols-12">
           <div className="flex flex-col gap-8 lg:col-span-8">
-            <Eyebrow>{t.eyebrow}</Eyebrow>
+            <Eyebrow data-hero-fade>{t.eyebrow}</Eyebrow>
             <h1 className="display-hero accent-em text-balance" style={{ fontSize: "clamp(3.2rem, 8vw, 9rem)" }}>
               <Rich text={t.title} />
             </h1>
@@ -32,9 +32,9 @@ export function TechHero({ t, features }: { t: TechDict["hero"]; features: TechD
         </div>
 
         <div className="grid gap-12 lg:grid-cols-12">
-          <p className="lead text-pretty text-muted-foreground lg:col-span-5">{t.lead}</p>
+          <p data-hero-fade className="lead text-pretty text-muted-foreground lg:col-span-5">{t.lead}</p>
 
-          <nav aria-label={t.tocLabel} className="flex flex-col gap-4 lg:col-span-6 lg:col-start-7">
+          <nav data-hero-fade aria-label={t.tocLabel} className="flex flex-col gap-4 lg:col-span-6 lg:col-start-7">
             <p className="mono-label text-accent">{t.tocLabel}</p>
             <ol className="grid border-b border-border sm:grid-cols-2 sm:gap-x-8">
               {features.map((f) => (

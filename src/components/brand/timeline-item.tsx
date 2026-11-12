@@ -7,6 +7,7 @@ export type TimelineEntry = { year: string; title: string; text: string; image?:
 export function TimelineItem({ entry, className }: { entry: TimelineEntry; className?: string }) {
   return (
     <li
+      data-reveal
       className={cn(
         "grid gap-6 border-t border-border py-10 md:grid-cols-[minmax(0,4fr)_minmax(0,5fr)_minmax(0,3fr)] md:gap-10",
         className

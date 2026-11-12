@@ -323,3 +323,18 @@
   hyphenate-limit-chars: 12 5 5;
 }
 
+/*
+ * Motion gate: html.motion is set by an inline script before first paint
+ * (only without prefers-reduced-motion). Hero pieces start hidden and GSAP
+ * reveals them; if JS never runs, the fallback animation shows them anyway.
+ */
+@keyframes motion-fallback {
+  to {
+    visibility: visible;
+  }
+}
+.motion [data-section$="hero"] :is(h1, [data-hero-fade], [data-slot="image-slot"]:not([data-hero-image] *)) {
+  visibility: hidden;
+  animation: motion-fallback 0s 2.5s forwards;
+}
+

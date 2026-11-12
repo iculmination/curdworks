@@ -96,7 +96,7 @@ export function HomeHero({ t, lang }: { t: HomeDict["hero"]; lang: Locale }) {
       />
 
       <Container className="flex flex-1 flex-col gap-10">
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <div data-hero-fade className="flex flex-wrap items-center justify-between gap-4">
           <Eyebrow index="01">{t.eyebrow}</Eyebrow>
           <p className="mono-label text-muted-foreground">{t.meta}</p>
         </div>
@@ -107,8 +107,8 @@ export function HomeHero({ t, lang }: { t: HomeDict["hero"]; lang: Locale }) {
 
         <div className="grid items-end gap-10 pb-10 lg:grid-cols-12">
           <div className="flex flex-col gap-8 lg:col-span-6 xl:col-span-5">
-            <p className="lead text-pretty text-muted-foreground">{t.lead}</p>
-            <div className="flex flex-wrap gap-3">
+            <p data-hero-fade className="lead text-pretty text-muted-foreground">{t.lead}</p>
+            <div data-hero-fade className="flex flex-wrap gap-3">
               <ButtonLink href="#process" size="lg" arrow>
                 {t.primaryCta}
               </ButtonLink>
@@ -118,7 +118,7 @@ export function HomeHero({ t, lang }: { t: HomeDict["hero"]; lang: Locale }) {
             </div>
           </div>
 
-          <div className="hidden items-end justify-end gap-8 lg:col-span-5 lg:col-start-8 lg:flex">
+          <div data-hero-fade className="hidden items-end justify-end gap-8 lg:col-span-5 lg:col-start-8 lg:flex">
             <a href="#process" className="mono-label flex items-center gap-2 text-muted-foreground hover:text-foreground">
               <ArrowDownIcon className="size-4" /> {t.scrollHint}
             </a>

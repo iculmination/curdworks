@@ -9,6 +9,7 @@ import { AboutValues } from "@/components/sections/about/values"
 import { AboutVisit } from "@/components/sections/about/visit"
 import type { Locale } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
+import { Motion } from "@/components/motion/motion"
 import { pageMetadata } from "@/lib/metadata"
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/about">): Promise<Metadata> {
@@ -37,6 +38,8 @@ export default async function AboutPage({ params }: PageProps<"/[lang]/about">) 
       <AboutFacility t={about.facility} />
       <AboutVisit t={about.visit} address={t.footer.address} />
       <AboutPress t={about.press} />
+      {/* after the page hydrates: wire up GSAP */}
+      <Motion />
     </>
   )
 }

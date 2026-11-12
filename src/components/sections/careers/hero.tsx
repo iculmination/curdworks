@@ -23,12 +23,12 @@ export function CareersHero({ t, openCount }: { t: CareersDict["hero"]; openCoun
       <Container className="flex flex-col gap-16">
         <div className="grid items-center gap-14 lg:grid-cols-12">
           <div className="flex flex-col gap-8 lg:col-span-7">
-            <Eyebrow>{t.eyebrow}</Eyebrow>
+            <Eyebrow data-hero-fade>{t.eyebrow}</Eyebrow>
             <h1 className="display-hero accent-em text-balance" style={{ fontSize: "clamp(3rem, 7.4vw, 8.5rem)" }}>
               <Rich text={t.title} />
             </h1>
-            <p className="lead max-w-xl text-pretty text-muted-foreground">{t.lead}</p>
-            <div className="flex flex-wrap gap-3">
+            <p data-hero-fade className="lead max-w-xl text-pretty text-muted-foreground">{t.lead}</p>
+            <div data-hero-fade className="flex flex-wrap gap-3">
               <a href="#jobs" className={cn(buttonVariants({ size: "lg" }))}>
                 {t.primaryCta}
                 <span className="grid size-10 place-items-center rounded-full bg-accent font-mono text-sm text-accent-foreground">
@@ -54,7 +54,7 @@ export function CareersHero({ t, openCount }: { t: CareersDict["hero"]; openCoun
           </div>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-3">
+        <div data-hero-fade className="grid gap-8 sm:grid-cols-3">
           {t.stats.map((s) => (
             <Stat key={s.label} {...s} size="md" />
           ))}

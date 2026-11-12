@@ -8,6 +8,7 @@ import { CareersPerks } from "@/components/sections/careers/perks"
 import { CareersProcess } from "@/components/sections/careers/process"
 import type { Locale } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
+import { Motion } from "@/components/motion/motion"
 import { pageMetadata } from "@/lib/metadata"
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/careers">): Promise<Metadata> {
@@ -34,6 +35,8 @@ export default async function CareersPage({ params }: PageProps<"/[lang]/careers
       <CareersProcess t={t.process} />
       <CareersApply t={t.apply} jobs={t.jobs.items} />
       <CtaBand t={t.cta} lang={lang as Locale} theme="rind" />
+      {/* after the page hydrates: wire up GSAP */}
+      <Motion />
     </>
   )
 }

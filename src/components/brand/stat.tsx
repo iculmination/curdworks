@@ -15,7 +15,7 @@ export function Stat({
   size?: "md" | "lg"
 }) {
   return (
-    <div className={cn("flex flex-col gap-3 border-t border-current/20 pt-5", className)}>
+    <div data-reveal className={cn("flex flex-col gap-3 border-t border-current/20 pt-5", className)}>
       <p
         className={cn(
           "flex items-start font-display leading-[0.85] tracking-[-0.05em]",

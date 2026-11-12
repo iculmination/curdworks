@@ -31,6 +31,7 @@ export function AboutValues({ t }: { t: AboutDict["values"] }) {
         <ol className="grid gap-5 md:grid-cols-3">
           {t.items.map((v) => (
             <li
+              data-reveal
               key={v.number}
               className="flex min-h-80 flex-col gap-6 rounded-[2rem] border border-border bg-card p-8 text-card-foreground"
             >

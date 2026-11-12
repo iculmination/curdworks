@@ -8,6 +8,7 @@ import { TechHero } from "@/components/sections/technologies/hero"
 import type { SectionTheme } from "@/components/brand/section"
 import type { Locale } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
+import { Motion } from "@/components/motion/motion"
 import { pageMetadata } from "@/lib/metadata"
 
 /* Colour rhythm for the six feature blocks */
@@ -44,6 +45,8 @@ export default async function TechnologiesPage({ params }: PageProps<"/[lang]/te
       <TechComparison t={t.comparison} />
       <TechFaq t={t.faq} />
       <CtaBand t={t.cta} lang={lang as Locale} />
+      {/* after the page hydrates: wire up GSAP */}
+      <Motion />
     </>
   )
 }

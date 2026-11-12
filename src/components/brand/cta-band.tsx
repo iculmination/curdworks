@@ -11,8 +11,8 @@ export function CtaBand({ t, lang, theme = "rind" }: { t: CtaBandData; lang: Loc
     <Section theme={theme} name="cta">
       <HoleCluster
         holes={[
-          { x: 92, y: 30, size: 16, tone: "muted" },
-          { x: 80, y: 85, size: 5, tone: "muted" },
+          { x: 92, y: 30, size: 16, tone: "outline" },
+          { x: 48, y: 90, size: 5, tone: "muted" },
         ]}
       />
       <Container className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
