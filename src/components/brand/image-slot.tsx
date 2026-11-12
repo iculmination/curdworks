@@ -16,7 +16,7 @@ const shapeClass: Record<ImageShape, string> = {
 type Props = {
   /** What should be photographed here — shown on the placeholder */
   label: string
-  /** CSS aspect-ratio, e.g. "4/5", "16/9", "1" */
+  /** CSS aspect-ratio, e.g. "4/5", "16/9", "1" — or "auto" to fill the parent (set a height) */
   ratio?: string
   shape?: ImageShape
   src?: string
@@ -48,7 +48,7 @@ export function ImageSlot({
     <figure
       data-slot="image-slot"
       className={cn("relative overflow-hidden", shapeClass[shape], className)}
-      style={{ aspectRatio: isRound ? "1" : ratio }}
+      style={{ aspectRatio: isRound ? "1" : ratio === "auto" ? undefined : ratio }}
       aria-label={compact && !src ? label : undefined}
     >
       {src ? (
@@ -61,7 +61,7 @@ export function ImageSlot({
               {label}
             </figcaption>
           )}
-          {!isRound && !compact && (
+          {!isRound && !compact && ratio !== "auto" && (
             <span className="mono-label absolute right-4 bottom-3 text-[0.58rem] opacity-60">
               {ratio.replace("/", ":")}
             </span>

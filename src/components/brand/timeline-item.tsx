@@ -22,7 +22,7 @@ export function TimelineItem({ entry, className }: { entry: TimelineEntry; class
         <h3 className="display-3">{entry.title}</h3>
         <p className="text-pretty text-muted-foreground">{entry.text}</p>
       </div>
-      {entry.image && <ImageSlot label={entry.image} ratio="4/3" className="md:max-w-xs md:justify-self-end" />}
+      {entry.image && <ImageSlot label={entry.image} ratio="4/3" className="w-full md:max-w-xs md:justify-self-end" />}
     </li>
   )
 }

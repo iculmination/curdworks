@@ -7,6 +7,7 @@ import type { ProcessStepData } from "@/components/brand/process-step"
 import type { ProductData } from "@/components/brand/product-card"
 import type { QuoteData } from "@/components/brand/quote"
 import type { Spec } from "@/components/brand/spec-list"
+import type { TimelineEntry } from "@/components/brand/timeline-item"
 
 export type NavKey = "home" | "about" | "technologies" | "careers"
 
@@ -60,6 +61,38 @@ export type HomeDict = {
   }
 }
 
+export type TeamMember = { name: string; role: string; note: string; image: string }
+
+export type AboutDict = {
+  meta: { title: string; description: string }
+  hero: {
+    eyebrow: string
+    title: string
+    lead: string
+    images: [string, string]
+    facts: StatData[]
+  }
+  story: SectionIntro & { entries: TimelineEntry[] }
+  values: SectionIntro & {
+    missionLabel: string
+    mission: string
+    items: { number: string; title: string; text: string }[]
+  }
+  team: SectionIntro & { members: TeamMember[]; cta: string }
+  facility: SectionIntro & { stats: StatData[]; gallery: string[] }
+  visit: SectionIntro & {
+    tour: { title: string; specs: Spec[]; note: string; cta: string; email: string }
+    tasting: { title: string; specs: Spec[] }
+    addressTitle: string
+    mapLabel: string
+  }
+  press: SectionIntro & {
+    downloads: { label: string; meta: string }[]
+    downloadLabel: string
+    contact: { title: string; name: string; role: string; email: string }
+  }
+}
+
 export type Dictionary = {
   meta: {
     siteName: string
@@ -90,4 +123,5 @@ export type Dictionary = {
     backToTop: string
   }
   home: HomeDict
+  about: AboutDict
 }

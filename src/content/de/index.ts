@@ -1,4 +1,5 @@
 import type { Dictionary } from "../types"
+import about from "./about"
 import home from "./home"
 
 const de: Dictionary = {
@@ -68,6 +69,7 @@ const de: Dictionary = {
     backToTop: "Nach oben",
   },
   home,
+  about,
 }
 
 export default de
