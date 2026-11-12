@@ -54,7 +54,7 @@ export function SiteHeader({ lang, nav, header }: Props) {
         </Link>
 
         <nav
-          aria-label="Main"
+          aria-label={header.mainNav}
           className="pointer-events-auto absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 rounded-full border border-border bg-background/80 p-1.5 backdrop-blur-md lg:flex"
         >
           {routes.map((r) => (
@@ -88,12 +88,13 @@ export function SiteHeader({ lang, nav, header }: Props) {
             <SheetContent
               side="top"
               showCloseButton
+              closeLabel={header.close}
               className="theme-cave h-svh border-0 bg-background p-0 text-foreground data-[side=top]:h-svh"
             >
               <div className="container-site flex h-full flex-col pt-6 pb-10">
                 <SheetTitle className="sr-only">{header.menu}</SheetTitle>
                 <Logo className="text-2xl" />
-                <nav aria-label="Mobile" className="mt-auto flex flex-col">
+                <nav aria-label={header.mobileNav} className="mt-auto flex flex-col">
                   {routes.map((r, i) => (
                     <SheetClose
                       key={r.key}

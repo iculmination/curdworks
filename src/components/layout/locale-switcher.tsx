@@ -20,17 +20,18 @@ export function LocaleSwitcher({
   const rest = pathname.replace(/^\/[^/]+/, "")
 
   return (
-    <nav aria-label={label} className={cn("mono-label flex items-center gap-1", className)}>
+    <nav aria-label={label} translate="no" className={cn("mono-label flex items-center gap-1", className)}>
       {locales.map((l, i) => (
         <span key={l} className="flex items-center gap-1">
           {i > 0 && <span aria-hidden className="opacity-30">/</span>}
           <Link
             href={`/${l}${rest}`}
             hrefLang={l}
+            lang={l}
             aria-current={l === current ? "true" : undefined}
             className={cn(
               "rounded-full px-1.5 py-1 transition-colors hover:text-accent",
-              l === current ? "text-foreground" : "text-muted-foreground"
+              l === current ? "text-foreground" : "text-foreground/75"
             )}
           >
             {l.toUpperCase()}

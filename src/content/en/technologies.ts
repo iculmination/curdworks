@@ -150,7 +150,7 @@ const technologies: TechDict = {
     eyebrow: "Side by side",
     title: "Same craft. *Sharper* tools.",
     lead: "We don't replace tradition — we measure it. Here's what that changes in practice.",
-    columns: ["", "Traditional dairy", "Curdworks"],
+    columns: ["Aspect", "Traditional dairy", "Curdworks"],
     rows: [
       ["Milk safety", "Full pasteurisation or raw, untested", "Microfiltration + gentle thermisation"],
       ["Cultures", "Commercial starter packs", "48 own strains, sequenced"],

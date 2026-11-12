@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import type { TechDict } from "@/content/types"
 
 export function TechComparison({ t }: { t: TechDict["comparison"] }) {
-  const [, oldCol, newCol] = t.columns
+  const [featureCol, oldCol, newCol] = t.columns
   return (
     <Section theme="cave" fullscreen name="comparison">
       <BigIndex className="-top-10 -right-6">{t.index}</BigIndex>
@@ -24,7 +24,9 @@ export function TechComparison({ t }: { t: TechDict["comparison"] }) {
           <Table className="text-base">
             <TableHeader>
               <TableRow className="hover:bg-transparent">
-                <TableHead className="w-1/4" />
+                <TableHead className="w-1/4">
+                  <span className="sr-only">{featureCol}</span>
+                </TableHead>
                 <TableHead className="mono-label h-14 w-[37.5%] text-muted-foreground">{oldCol}</TableHead>
                 <TableHead className="mono-label h-14 w-[37.5%] rounded-t-2xl bg-accent px-5 text-accent-foreground">
                   {newCol}

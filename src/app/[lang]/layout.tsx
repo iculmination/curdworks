@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/layout/site-header"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { getDictionary } from "@/i18n/dictionaries"
 import { locales, type Locale } from "@/i18n/config"
+import { siteUrl } from "@/lib/metadata"
 import "../globals.css"
 
 const fraunces = Fraunces({
@@ -35,9 +36,8 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
   return {
     title: { default: `${t.meta.siteName} — ${t.meta.tagline}`, template: `%s · ${t.meta.siteName}` },
     description: t.meta.description,
-    alternates: {
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
-    },
+    metadataBase: siteUrl,
+    applicationName: t.meta.siteName,
   }
 }
 

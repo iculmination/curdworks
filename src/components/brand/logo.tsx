@@ -15,6 +15,7 @@ export function Logo({
     <span
       aria-label={title}
       role="img"
+      translate="no"
       className={cn(
         "inline-flex items-baseline font-display leading-none font-semibold tracking-[-0.04em] select-none",
         className

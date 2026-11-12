@@ -214,6 +214,9 @@ export type Dictionary = {
     close: string
     language: string
     skipToContent: string
+    /** aria-labels for the desktop and mobile navigation */
+    mainNav: string
+    mobileNav: string
   }
   footer: {
     statement: string
@@ -221,6 +224,7 @@ export type Dictionary = {
     newsletter: {
       title: string
       text: string
+      emailLabel: string
       placeholder: string
       submit: string
       success: string

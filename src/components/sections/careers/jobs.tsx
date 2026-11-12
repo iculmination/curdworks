@@ -89,6 +89,7 @@ export function CareersJobs({ t }: { t: CareersDict["jobs"] }) {
         <SheetContent
           side="right"
           finalFocus={!applying}
+          closeLabel={t.detail.close}
           className="theme-cream w-full gap-0 border-0 bg-background p-0 text-foreground data-[side=right]:w-full data-[side=right]:sm:max-w-xl"
         >
           {job && (

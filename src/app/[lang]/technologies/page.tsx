@@ -8,14 +8,21 @@ import { TechHero } from "@/components/sections/technologies/hero"
 import type { SectionTheme } from "@/components/brand/section"
 import type { Locale } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
+import { pageMetadata } from "@/lib/metadata"
 
 /* Colour rhythm for the six feature blocks */
 const featureThemes: SectionTheme[] = ["cream", "paper", "cave", "cream", "paper", "wax"]
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/technologies">): Promise<Metadata> {
   const { lang } = await params
-  const { technologies } = await getDictionary(lang)
-  return { title: technologies.meta.title, description: technologies.meta.description }
+  const { meta, technologies } = await getDictionary(lang)
+  return pageMetadata({
+    lang: lang as Locale,
+    path: "/technologies",
+    title: technologies.meta.title,
+    description: technologies.meta.description,
+    siteName: meta.siteName,
+  })
 }
 
 export default async function TechnologiesPage({ params }: PageProps<"/[lang]/technologies">) {

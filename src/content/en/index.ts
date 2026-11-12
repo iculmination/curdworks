@@ -23,6 +23,8 @@ const en: Dictionary = {
     close: "Close",
     language: "Language",
     skipToContent: "Skip to content",
+    mainNav: "Main navigation",
+    mobileNav: "Mobile navigation",
   },
   footer: {
     statement: "Patience, engineered.",
@@ -57,6 +59,7 @@ const en: Dictionary = {
     newsletter: {
       title: "The Rind Report",
       text: "One letter a month. New wheels, cave notes and the occasional recipe. Matured, never spammy.",
+      emailLabel: "Email address",
       placeholder: "your@email.com",
       submit: "Subscribe",
       success: "You're on the list. First letter ripens soon.",

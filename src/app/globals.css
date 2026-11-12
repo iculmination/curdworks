@@ -75,10 +75,11 @@
   --brand-paper: oklch(0.975 0.012 84);
   --brand-cave: oklch(0.205 0.014 60);
   --brand-cave-soft: oklch(0.27 0.016 60);
-  --brand-rind: oklch(0.6 0.155 41);
-  --brand-rind-deep: oklch(0.5 0.14 38);
+  /* rind is tuned for WCAG AA: 4.6:1 on cream, 5:1 under paper text */
+  --brand-rind: oklch(0.54 0.155 41);
+  --brand-rind-deep: oklch(0.45 0.135 38);
   --brand-wax: oklch(0.8 0.135 80);
-  --brand-mold: oklch(0.56 0.05 235);
+  --brand-mold: oklch(0.52 0.05 235);
 
   --radius: 0.75rem;
   --header-h: 4.5rem;
@@ -145,8 +146,9 @@
   --secondary: var(--brand-rind-deep);
   --secondary-foreground: var(--brand-paper);
   --muted: var(--brand-rind-deep);
-  --muted-foreground: oklch(0.93 0.04 70);
-  --accent: var(--brand-wax);
+  --muted-foreground: oklch(0.96 0.03 75);
+  /* pale butter instead of wax: wax is only 2.9:1 on rind */
+  --accent: oklch(0.94 0.075 92);
   --accent-foreground: var(--brand-cave);
   --border: oklch(0.975 0.012 84 / 25%);
   --input: oklch(0.975 0.012 84 / 35%);
@@ -158,7 +160,9 @@
   --foreground: var(--brand-cave);
   --card: oklch(0.86 0.11 82);
   --muted-foreground: oklch(0.36 0.04 60);
-  --accent: var(--brand-rind);
+  /* darker brick: plain rind is only 2.9:1 on wax */
+  --accent: oklch(0.43 0.14 38);
+  --ring: oklch(0.43 0.14 38);
   --border: oklch(0.205 0.014 60 / 18%);
 }
 
@@ -302,8 +306,20 @@
 /* Hero headline: as big as display-hero allows, but never wider than the
    viewport. --em-sm / --em-lg = estimated width of the longest line in em. */
 @utility hero-fit {
-  font-size: min(clamp(3.4rem, 11.5vw, 12rem), calc((100vw - 2 * var(--gutter)) / var(--em-sm, 6)));
+  /* min(100vw, 96rem) = the container's max width, so the fit holds on very wide screens too */
+  font-size: min(clamp(3.4rem, 11.5vw, 12rem), calc((min(100vw, 96rem) - 2 * var(--gutter)) / var(--em-sm, 6)));
   @media (width >= 48rem) {
-    font-size: min(clamp(3.4rem, 11.5vw, 12rem), calc((100vw - 2 * var(--gutter)) / var(--em-lg, 6)));
+    font-size: min(clamp(3.4rem, 11.5vw, 12rem), calc((min(100vw, 96rem) - 2 * var(--gutter)) / var(--em-lg, 6)));
   }
 }
+
+/*
+ * German compounds ("Weiterbildungsbudget", "Gefrierschrank") can be wider
+ * than a heading column. Let the browser hyphenate long words only —
+ * the html lang attribute picks the right dictionary.
+ */
+:lang(de) :is(h2, h3) {
+  hyphens: auto;
+  hyphenate-limit-chars: 12 5 5;
+}
+

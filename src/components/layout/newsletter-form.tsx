@@ -28,7 +28,7 @@ export function NewsletterForm({ t }: { t: Dictionary["footer"]["newsletter"] })
       }}
     >
       <label htmlFor="newsletter-email" className="sr-only">
-        Email
+        {t.emailLabel}
       </label>
       <Input
         id="newsletter-email"

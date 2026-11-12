@@ -9,11 +9,18 @@ import { AboutValues } from "@/components/sections/about/values"
 import { AboutVisit } from "@/components/sections/about/visit"
 import type { Locale } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
+import { pageMetadata } from "@/lib/metadata"
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/about">): Promise<Metadata> {
   const { lang } = await params
-  const { about } = await getDictionary(lang)
-  return { title: about.meta.title, description: about.meta.description }
+  const { meta, about } = await getDictionary(lang)
+  return pageMetadata({
+    lang: lang as Locale,
+    path: "/about",
+    title: about.meta.title,
+    description: about.meta.description,
+    siteName: meta.siteName,
+  })
 }
 
 export default async function AboutPage({ params }: PageProps<"/[lang]/about">) {

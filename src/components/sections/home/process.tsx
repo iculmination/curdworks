@@ -30,7 +30,10 @@ export function HomeProcess({ t }: { t: HomeDict["process"] }) {
       {/* Horizontal track — full-bleed, aligned to the container on the left */}
       <ol
         data-process-track
-        className="scrollbar-thin mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-6 pl-(--track-pad) after:block after:w-(--track-pad) after:shrink-0 after:content-['']"
+        // scrollable region: focusable so keyboard users can scroll it with arrow keys
+        tabIndex={0}
+        aria-label={t.eyebrow}
+        className="scrollbar-thin mt-14 outline-none focus-visible:ring-3 focus-visible:ring-ring/50 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-6 pl-(--track-pad) after:block after:w-(--track-pad) after:shrink-0 after:content-['']"
       >
         {t.steps.map((step) => (
           <li key={step.number} className="w-[min(84vw,24rem)] shrink-0 snap-start">

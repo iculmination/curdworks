@@ -23,6 +23,8 @@ const de: Dictionary = {
     close: "Schließen",
     language: "Sprache",
     skipToContent: "Zum Inhalt springen",
+    mainNav: "Hauptnavigation",
+    mobileNav: "Mobile Navigation",
   },
   footer: {
     statement: "Geduld, präzise gemacht.",
@@ -57,6 +59,7 @@ const de: Dictionary = {
     newsletter: {
       title: "Der Rindenbrief",
       text: "Ein Brief im Monat. Neue Laibe, Notizen aus der Höhle und hin und wieder ein Rezept. Gereift, nie aufdringlich.",
+      emailLabel: "E-Mail-Adresse",
       placeholder: "ihre@email.de",
       submit: "Abonnieren",
       success: "Sie sind dabei. Der erste Brief reift bereits.",

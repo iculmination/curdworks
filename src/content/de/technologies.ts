@@ -150,7 +150,7 @@ const technologies: TechDict = {
     eyebrow: "Im Vergleich",
     title: "Gleiches Handwerk. *Schärfere* Werkzeuge.",
     lead: "Wir ersetzen Tradition nicht — wir vermessen sie. Das ändert sich dadurch in der Praxis.",
-    columns: ["", "Klassische Sennerei", "Curdworks"],
+    columns: ["Bereich", "Klassische Sennerei", "Curdworks"],
     rows: [
       ["Milchsicherheit", "Volle Pasteurisierung oder roh, ungeprüft", "Mikrofiltration + sanfte Thermisierung"],
       ["Kulturen", "Handelsübliche Starterkulturen", "48 eigene Stämme, sequenziert"],

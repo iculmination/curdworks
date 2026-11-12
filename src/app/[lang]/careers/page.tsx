@@ -8,11 +8,18 @@ import { CareersPerks } from "@/components/sections/careers/perks"
 import { CareersProcess } from "@/components/sections/careers/process"
 import type { Locale } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
+import { pageMetadata } from "@/lib/metadata"
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/careers">): Promise<Metadata> {
   const { lang } = await params
-  const { careers } = await getDictionary(lang)
-  return { title: careers.meta.title, description: careers.meta.description }
+  const { meta, careers } = await getDictionary(lang)
+  return pageMetadata({
+    lang: lang as Locale,
+    path: "/careers",
+    title: careers.meta.title,
+    description: careers.meta.description,
+    siteName: meta.siteName,
+  })
 }
 
 export default async function CareersPage({ params }: PageProps<"/[lang]/careers">) {
