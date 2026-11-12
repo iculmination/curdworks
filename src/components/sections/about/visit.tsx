@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/brand/section-heading"
 import { SpecList } from "@/components/brand/spec-list"
 import { buttonVariants } from "@/components/ui/button"
 import type { AboutDict } from "@/content/types"
+import { cn } from "@/lib/utils"
 
 export function AboutVisit({ t, address }: { t: AboutDict["visit"]; address: string[] }) {
   return (
@@ -34,7 +35,7 @@ export function AboutVisit({ t, address }: { t: AboutDict["visit"]; address: str
             <p className="text-sm text-muted-foreground">{t.tour.note}</p>
             <a
               href={`mailto:${t.tour.email}`}
-              className={buttonVariants({ size: "lg", className: "self-start" })}
+              className={cn(buttonVariants({ size: "lg" }), "self-start")}
             >
               <MailIcon className="size-4" />
               {t.tour.cta}

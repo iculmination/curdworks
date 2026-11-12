@@ -1,6 +1,7 @@
 import type { Dictionary } from "../types"
 import about from "./about"
 import home from "./home"
+import technologies from "./technologies"
 
 const de: Dictionary = {
   meta: {
@@ -70,6 +71,7 @@ const de: Dictionary = {
   },
   home,
   about,
+  technologies,
 }
 
 export default de

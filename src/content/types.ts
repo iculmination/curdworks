@@ -93,6 +93,49 @@ export type AboutDict = {
   }
 }
 
+export type CtaBandData = {
+  title: string
+  text: string
+  primary: LinkItem
+  secondary: LinkItem
+}
+
+export type TechFeatureData = {
+  id: string
+  number: string
+  name: string
+  /** *word* = accent */
+  title: string
+  text: string
+  points: string[]
+  specs: Spec[]
+  image: string
+  detailImage: string
+}
+
+export type TechDict = {
+  meta: { title: string; description: string }
+  hero: {
+    eyebrow: string
+    title: string
+    lead: string
+    tocLabel: string
+    image: string
+  }
+  features: TechFeatureData[]
+  specsLabel: string
+  comparison: SectionIntro & {
+    columns: [string, string, string]
+    rows: [string, string, string][]
+  }
+  faq: SectionIntro & {
+    items: { q: string; a: string }[]
+    contactText: string
+    contactCta: string
+  }
+  cta: CtaBandData
+}
+
 export type Dictionary = {
   meta: {
     siteName: string
@@ -124,4 +167,5 @@ export type Dictionary = {
   }
   home: HomeDict
   about: AboutDict
+  technologies: TechDict
 }

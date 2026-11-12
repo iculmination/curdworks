@@ -1,16 +1,42 @@
-import { Section, Container } from "@/components/brand/section"
-import { SectionHeading } from "@/components/brand/section-heading"
+import type { Metadata } from "next"
+
+import { CtaBand } from "@/components/brand/cta-band"
+import { TechComparison } from "@/components/sections/technologies/comparison"
+import { TechFaq } from "@/components/sections/technologies/faq"
+import { TechFeature } from "@/components/sections/technologies/feature"
+import { TechHero } from "@/components/sections/technologies/hero"
+import type { SectionTheme } from "@/components/brand/section"
+import type { Locale } from "@/i18n/config"
 import { getDictionary } from "@/i18n/dictionaries"
 
-// Placeholder — real content lands in the next stage.
+/* Colour rhythm for the six feature blocks */
+const featureThemes: SectionTheme[] = ["cream", "paper", "cave", "cream", "paper", "wax"]
+
+export async function generateMetadata({ params }: PageProps<"/[lang]/technologies">): Promise<Metadata> {
+  const { lang } = await params
+  const { technologies } = await getDictionary(lang)
+  return { title: technologies.meta.title, description: technologies.meta.description }
+}
+
 export default async function TechnologiesPage({ params }: PageProps<"/[lang]/technologies">) {
   const { lang } = await params
-  const t = await getDictionary(lang)
+  const { technologies: t } = await getDictionary(lang)
+
   return (
-    <Section fullscreen name="technologies-placeholder">
-      <Container>
-        <SectionHeading as="h1" eyebrow="WIP" title={t.nav.technologies} />
-      </Container>
-    </Section>
+    <>
+      <TechHero t={t.hero} features={t.features} />
+      {t.features.map((f, i) => (
+        <TechFeature
+          key={f.id}
+          f={f}
+          reversed={i % 2 === 1}
+          theme={featureThemes[i % featureThemes.length]}
+          specsLabel={t.specsLabel}
+        />
+      ))}
+      <TechComparison t={t.comparison} />
+      <TechFaq t={t.faq} />
+      <CtaBand t={t.cta} lang={lang as Locale} />
+    </>
   )
 }
