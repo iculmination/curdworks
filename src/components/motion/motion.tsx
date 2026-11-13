@@ -23,6 +23,14 @@ import { gsap, MOTION_OK, ScrollTrigger, SplitText, useGSAP } from "@/lib/gsap"
  *   footer wordmark                               letters rise, the eye rolls in
  */
 
+/**
+ * Play once on enter. Deliberately not `once: true`: a once-trigger that is
+ * already passed (page opened at /about#visit) kills itself during
+ * ScrollTrigger's refresh loop, which shifts its internal array and crashes
+ * the next trigger being created ("reading 'end'").
+ */
+const PLAY_ONCE = "play none none none"
+
 /** Only elements on the visible page (Next keeps hidden routes mounted). */
 function all<T extends Element = HTMLElement>(selector: string, root: ParentNode = document) {
   return Array.from(root.querySelectorAll<T>(selector)).filter((el) => el.checkVisibility())
@@ -134,7 +142,7 @@ function sectionHeadings() {
         y: 0,
         duration: 1.2,
         clearProps: "clipPath", // don't keep clipping italic descenders
-        scrollTrigger: { trigger: h2, start: "top 88%", once: true },
+        scrollTrigger: { trigger: h2, start: "top 88%", toggleActions: PLAY_ONCE },
       }
     )
   }
@@ -144,7 +152,7 @@ function sectionHeadings() {
     gsap.fromTo(
       bits,
       { autoAlpha: 0, x: -20 },
-      { autoAlpha: 1, x: 0, stagger: 0.12, scrollTrigger: { trigger: header, start: "top 88%", once: true } }
+      { autoAlpha: 1, x: 0, stagger: 0.12, scrollTrigger: { trigger: header, start: "top 88%", toggleActions: PLAY_ONCE } }
     )
   }
 }
@@ -160,7 +168,6 @@ function batchReveal() {
   gsap.set(items, { autoAlpha: 0, y: 60 })
   ScrollTrigger.batch(items, {
     start: "top 90%",
-    once: true,
     onEnter: (batch) =>
       gsap.to(batch, { autoAlpha: 1, y: 0, duration: 1.1, stagger: 0.09, overwrite: true }),
   })
@@ -172,7 +179,7 @@ function imageCurtains() {
   )
   for (const slot of slots) {
     const inner = slot.firstElementChild
-    const tl = gsap.timeline({ scrollTrigger: { trigger: slot, start: "top 88%", once: true } })
+    const tl = gsap.timeline({ scrollTrigger: { trigger: slot, start: "top 88%", toggleActions: PLAY_ONCE } })
     tl.fromTo(
       slot,
       { clipPath: "inset(100% 0% 0% 0%)" },
@@ -255,7 +262,7 @@ function countUps(lang: string) {
       v: target,
       duration: 2,
       ease: "power3.out",
-      scrollTrigger: { trigger: el, start: "top bottom", once: true },
+      scrollTrigger: { trigger: el, start: "top bottom", toggleActions: PLAY_ONCE },
       onUpdate: () => render(state.v),
       onComplete: () => {
         el.textContent = text
@@ -289,7 +296,7 @@ function footerWordmark() {
   const pieces = mark ? Array.from(mark.children) : []
   if (pieces.length !== 3) return
   const [left, eye, right] = pieces
-  const tl = gsap.timeline({ scrollTrigger: { trigger: mark, start: "top bottom-=40", once: true } })
+  const tl = gsap.timeline({ scrollTrigger: { trigger: mark, start: "top bottom-=40", toggleActions: PLAY_ONCE } })
   tl.fromTo([left, right], { yPercent: 100 }, { yPercent: 0, duration: 1.4, stagger: 0.1 })
     .fromTo(eye, { scale: 0, rotate: -180 }, { scale: 1, rotate: 0, duration: 1.4, ease: "back.out(1.6)" }, 0.25)
 }
