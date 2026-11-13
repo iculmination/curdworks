@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Curdworks
 
-## Getting Started
+A marketing site for a fictional high-tech cheese dairy in the Allgäu. It is a pet project: the brand, people and numbers are all invented.
 
-First, run the development server:
+**Pages:** Home (landing), About, Technologies and Careers, in English and German (`/en`, `/de`).
+
+## Stack
+
+- **Framework:** Next.js 16 (App Router, Turbopack), React 19, TypeScript
+- **Styling:** Tailwind CSS v4, plus a project UI kit built on shadcn/ui (Base UI)
+- **Motion:** GSAP (ScrollTrigger, SplitText) and Lenis smooth scroll. Animations turn off when the system's reduced-motion setting is on.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build && npm start
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Set `NEXT_PUBLIC_SITE_URL` to the production URL. It is used for canonical links, the sitemap and Open Graph images.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  app/[lang]/           routes, metadata, OG images (kit/ is the UI kit showcase)
+  components/
+    ui/                 shadcn base components
+    brand/              project UI kit (ImageSlot, Art, cards, stats…)
+    sections/           page sections, one folder per page
+    motion/             GSAP + Lenis wiring
+  content/
+    en/, de/            typed dictionaries (types.ts is the source of truth)
+    visuals.ts          art and photo for every image slot
+  proxy.ts              locale redirect based on Accept-Language
+```
 
-## Learn More
+## Images
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every image slot renders a generated SVG illustration in the brand palette (`components/brand/art.tsx`).
+A photo in `public/photos/` whose name matches the slot in `content/visuals.ts` replaces the illustration automatically.
+The extension can be `.webp`, `.jpg`, `.png` or `.avif`.
