@@ -2,6 +2,7 @@ import { ArrowDownRightIcon } from "lucide-react"
 
 import { Eyebrow } from "@/components/brand/eyebrow"
 import { HoleCluster } from "@/components/brand/holes"
+import { visuals } from "@/content/visuals"
 import { ImageSlot } from "@/components/brand/image-slot"
 import { Rich } from "@/components/brand/rich"
 import { Container, Section } from "@/components/brand/section"
@@ -26,6 +27,7 @@ export function TechHero({ t, features }: { t: TechDict["hero"]; features: TechD
           </div>
           <ImageSlot
             label={t.image}
+            visual={visuals.technologies.hero}
             shape="hole"
             className="mx-auto w-2/3 max-w-sm lg:col-span-4 lg:w-full"
           />

@@ -1,3 +1,4 @@
+import { visuals } from "@/content/visuals"
 import { Fragment } from "react"
 import { ArrowDownIcon } from "lucide-react"
 
@@ -67,7 +68,7 @@ function HeroTitle({ lines, images }: { lines: string[]; images: string[] }) {
                     data-hero-image={i}
                     className={`mx-[0.04em] inline-block -translate-y-[0.06em] align-middle ${cfg.width}`}
                   >
-                    <ImageSlot label={images[i] ?? ""} shape={cfg.shape} ratio={cfg.ratio} compact priority />
+                    <ImageSlot label={images[i] ?? ""} visual={visuals.home.hero[i]} shape={cfg.shape} ratio={cfg.ratio} priority />
                   </span>
                 )}
               </Fragment>

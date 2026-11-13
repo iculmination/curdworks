@@ -1,5 +1,6 @@
 import { Eyebrow } from "@/components/brand/eyebrow"
 import { HoleCluster } from "@/components/brand/holes"
+import { visuals } from "@/content/visuals"
 import { ImageSlot } from "@/components/brand/image-slot"
 import { Rich } from "@/components/brand/rich"
 import { Container, Section } from "@/components/brand/section"
@@ -44,9 +45,10 @@ export function CareersHero({ t, openCount }: { t: CareersDict["hero"]; openCoun
 
           {/* Collage: tall pill portrait + round "window" overlapping it */}
           <div className="relative mx-auto w-full max-w-md pb-10 lg:col-span-5 lg:max-w-none lg:pb-0">
-            <ImageSlot label={t.images[0]} ratio="3/4" shape="pill" priority className="ml-auto w-[72%]" />
+            <ImageSlot label={t.images[0]} visual={visuals.careers.hero[0]} ratio="3/4" shape="pill" priority className="ml-auto w-[72%]" />
             <ImageSlot
               label={t.images[1]}
+              visual={visuals.careers.hero[1]}
               ratio="1"
               shape="circle"
               className="absolute bottom-0 left-0 w-[46%] border-[0.5rem] border-background"

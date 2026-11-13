@@ -1,7 +1,10 @@
+import { existsSync } from "node:fs"
+import { join } from "node:path"
 import Image from "next/image"
-import { ImageIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import type { Visual } from "@/content/visuals"
+import { Art, artFromLabel, type ArtSpec } from "./art"
 
 export type ImageShape = "rect" | "circle" | "arch" | "hole" | "pill"
 
@@ -14,59 +17,66 @@ const shapeClass: Record<ImageShape, string> = {
 }
 
 type Props = {
-  /** What should be photographed here — shown on the placeholder */
+  /** What the image shows — used as alt text / aria-label */
   label: string
   /** CSS aspect-ratio, e.g. "4/5", "16/9", "1" — or "auto" to fill the parent (set a height) */
   ratio?: string
   shape?: ImageShape
+  /** Path under /public. Used only if the file exists, otherwise the art is shown. */
   src?: string
+  /** Generated illustration; defaults to a motif picked from the label */
+  art?: ArtSpec
+  /** Shorthand for `art` + `src` from content/visuals */
+  visual?: Visual
   alt?: string
   priority?: boolean
   sizes?: string
-  /** Hide the caption text (small slots) — label stays as aria-label */
-  compact?: boolean
   className?: string
 }
 
+const photoExts = ["", ".webp", ".jpg", ".jpeg", ".png", ".avif"]
+
 /**
- * Reserved space for imagery. Renders a hatched, labelled placeholder
- * until a `src` is provided, then switches to next/image (fill, cover).
+ * Photos are optional: drop a file into /public and it replaces the art.
+ * `src` may omit the extension ("/photos/cave" finds cave.jpg, cave.png…).
+ */
+function findPhoto(src?: string): string | undefined {
+  if (!src) return undefined
+  for (const ext of photoExts) {
+    if (existsSync(join(process.cwd(), "public", src + ext))) return src + ext
+  }
+}
+
+/**
+ * Image frame with brand shapes. Shows a real photo when one is present in
+ * /public, otherwise a generated illustration in the brand palette.
  */
 export function ImageSlot({
   label,
   ratio = "4/5",
   shape = "rect",
   src,
+  art,
+  visual,
   alt,
   priority,
   sizes = "(min-width: 1024px) 50vw, 100vw",
-  compact = false,
   className,
 }: Props) {
   const isRound = shape === "circle" || shape === "hole"
+  const photo = findPhoto(src ?? visual?.photo)
   return (
     <figure
       data-slot="image-slot"
-      className={cn("relative overflow-hidden", shapeClass[shape], className)}
+      className={cn("grain relative overflow-hidden bg-muted", shapeClass[shape], className)}
       style={{ aspectRatio: isRound ? "1" : ratio === "auto" ? undefined : ratio }}
-      aria-label={compact && !src ? label : undefined}
+      role={photo ? undefined : "img"}
+      aria-label={photo ? undefined : (alt ?? label)}
     >
-      {src ? (
-        <Image src={src} alt={alt ?? label} fill priority={priority} sizes={sizes} className="object-cover" />
+      {photo ? (
+        <Image src={photo} alt={alt ?? label} fill priority={priority} sizes={sizes} className="object-cover" />
       ) : (
-        <div className="hatch absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center text-foreground/55">
-          <ImageIcon className="size-5" strokeWidth={1.25} aria-hidden />
-          {!compact && (
-            <figcaption className="mono-label max-w-[22ch] text-[0.62rem] leading-relaxed">
-              {label}
-            </figcaption>
-          )}
-          {!isRound && !compact && ratio !== "auto" && (
-            <span className="mono-label absolute right-4 bottom-3 text-[0.58rem] opacity-60">
-              {ratio.replace("/", ":")}
-            </span>
-          )}
-        </div>
+        <Art {...(art ?? visual?.art ?? artFromLabel(label))} />
       )}
     </figure>
   )

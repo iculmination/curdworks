@@ -1,5 +1,6 @@
 import { ButtonLink } from "@/components/brand/button-link"
 import { HoleCluster } from "@/components/brand/holes"
+import { visuals } from "@/content/visuals"
 import { ImageSlot } from "@/components/brand/image-slot"
 import { LiveReadout } from "@/components/brand/live-readout"
 import { Rich } from "@/components/brand/rich"
@@ -33,7 +34,7 @@ export function HomeCave({ t, lang }: { t: HomeDict["cave"]; lang: Locale }) {
           </div>
 
           <div className="relative lg:col-span-7 lg:col-start-6 lg:pl-10">
-            <ImageSlot label={t.image} ratio="5/4" shape="rect" className="rounded-[2.5rem]" />
+            <ImageSlot label={t.image} visual={visuals.home.cave} ratio="5/4" shape="rect" className="rounded-[2.5rem]" />
             <LiveReadout
               {...t.live}
               className="mt-4 sm:absolute sm:-bottom-10 sm:left-0 sm:mt-0 sm:w-80 lg:-left-6"

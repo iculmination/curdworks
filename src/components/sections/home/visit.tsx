@@ -1,5 +1,6 @@
 import { ButtonLink } from "@/components/brand/button-link"
 import { Eyebrow } from "@/components/brand/eyebrow"
+import { visuals } from "@/content/visuals"
 import { ImageSlot } from "@/components/brand/image-slot"
 import { Quote } from "@/components/brand/quote"
 import { Rich } from "@/components/brand/rich"
@@ -21,7 +22,7 @@ export function HomeVisit({ t, lang }: { t: HomeDict["visit"]; lang: Locale }) {
         <div className="relative flex flex-col items-center gap-10 text-center lg:min-h-[70svh] lg:justify-center">
           <div className="grid w-full max-w-md grid-cols-3 items-center gap-4 lg:contents">
             {t.images.map((label, i) => (
-              <ImageSlot key={label} label={label} shape="hole" compact className={floating[i]} />
+              <ImageSlot key={label} label={label} visual={visuals.home.visit[i]} shape="hole" className={floating[i]} />
             ))}
           </div>
 

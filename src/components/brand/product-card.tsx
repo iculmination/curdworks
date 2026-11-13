@@ -1,3 +1,4 @@
+import type { Visual } from "@/content/visuals"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { ImageSlot } from "./image-slot"
@@ -13,7 +14,15 @@ export type ProductData = {
 }
 
 /** Cheese presented like a flagship product: hero image + spec sheet. */
-export function ProductCard({ product, className }: { product: ProductData; className?: string }) {
+export function ProductCard({
+  product,
+  visual,
+  className,
+}: {
+  product: ProductData
+  visual?: Visual
+  className?: string
+}) {
   return (
     <article
       className={cn(
@@ -22,7 +31,7 @@ export function ProductCard({ product, className }: { product: ProductData; clas
       )}
     >
       <div className="relative">
-        <ImageSlot label={product.image} ratio="1/1" shape="arch" />
+        <ImageSlot label={product.image} visual={visual} ratio="1/1" shape="arch" />
         <Badge variant={product.tone} className="absolute top-4 left-4">
           {product.family}
         </Badge>

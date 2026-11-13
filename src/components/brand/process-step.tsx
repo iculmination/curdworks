@@ -1,3 +1,4 @@
+import type { Visual } from "@/content/visuals"
 import { cn } from "@/lib/utils"
 import { ImageSlot } from "./image-slot"
 import { SpecList, type Spec } from "./spec-list"
@@ -11,7 +12,15 @@ export type ProcessStepData = {
 }
 
 /** One stage of the cheesemaking process — a tall card for a horizontal track. */
-export function ProcessStep({ step, className }: { step: ProcessStepData; className?: string }) {
+export function ProcessStep({
+  step,
+  visual,
+  className,
+}: {
+  step: ProcessStepData
+  visual?: Visual
+  className?: string
+}) {
   return (
     <article
       data-step={step.number}
@@ -27,7 +36,7 @@ export function ProcessStep({ step, className }: { step: ProcessStepData; classN
         >
           {step.number}
         </span>
-        <ImageSlot label={step.image} shape="hole" compact className="w-24 shrink-0 md:w-28" />
+        <ImageSlot label={step.image} visual={visual} shape="hole" className="w-24 shrink-0 md:w-28" />
       </div>
       <h3 className="display-3">{step.title}</h3>
       <p className="text-pretty text-muted-foreground">{step.text}</p>

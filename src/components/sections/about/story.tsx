@@ -1,3 +1,4 @@
+import { visuals } from "@/content/visuals"
 import { BigIndex } from "@/components/brand/big-index"
 import { Rich } from "@/components/brand/rich"
 import { Container, Section } from "@/components/brand/section"
@@ -18,8 +19,8 @@ export function AboutStory({ t }: { t: AboutDict["story"] }) {
           className="max-w-4xl"
         />
         <ol className="border-b border-border">
-          {t.entries.map((e) => (
-            <TimelineItem key={e.year} entry={e} />
+          {t.entries.map((e, i) => (
+            <TimelineItem key={e.year} entry={e} visual={visuals.about.timeline[i]} />
           ))}
         </ol>
       </Container>

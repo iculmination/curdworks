@@ -1,6 +1,7 @@
 import { MailIcon, MapPinIcon } from "lucide-react"
 
 import { ArrowBadge } from "@/components/brand/button-link"
+import { visuals } from "@/content/visuals"
 import { ImageSlot } from "@/components/brand/image-slot"
 import { Rich } from "@/components/brand/rich"
 import { Container, Section } from "@/components/brand/section"
@@ -16,7 +17,7 @@ export function AboutVisit({ t, address }: { t: AboutDict["visit"]; address: str
       <Container className="grid gap-12 lg:grid-cols-12">
         <div className="flex flex-col gap-10 lg:col-span-5">
           <SectionHeading index={t.index} eyebrow={t.eyebrow} title={<Rich text={t.title} />} lead={t.lead} />
-          <ImageSlot label={t.mapLabel} ratio="16/10" />
+          <ImageSlot label={t.mapLabel} visual={visuals.about.map} ratio="16/10" />
           <address className="flex items-start gap-3 not-italic">
             <MapPinIcon className="mt-1 size-4 shrink-0 text-accent" />
             <span className="flex flex-col">

@@ -1,5 +1,6 @@
 import { MailIcon } from "lucide-react"
 
+import { visuals } from "@/content/visuals"
 import { ImageSlot } from "@/components/brand/image-slot"
 import { Rich } from "@/components/brand/rich"
 import { Container, Section } from "@/components/brand/section"
@@ -17,7 +18,7 @@ export function CareersApply({ t, jobs }: { t: CareersDict["apply"]; jobs: Caree
           <SectionHeading index={t.index} eyebrow={t.eyebrow} title={<Rich text={t.title} />} lead={t.lead} />
 
           <div className="flex items-center gap-5 border-t border-border pt-8">
-            <ImageSlot label={t.contact.name} shape="circle" ratio="1" compact className="w-20 shrink-0" />
+            <ImageSlot label={t.contact.name} visual={visuals.careers.contact} shape="circle" ratio="1" className="w-20 shrink-0" />
             <div className="flex min-w-0 flex-col gap-1">
               <p className="mono-label text-accent">{t.contact.title}</p>
               <p className="font-medium">{t.contact.name}</p>

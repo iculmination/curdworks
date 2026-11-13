@@ -1,3 +1,4 @@
+import { visuals } from "@/content/visuals"
 import { ButtonLink } from "@/components/brand/button-link"
 import { ProductCard } from "@/components/brand/product-card"
 import { Rich } from "@/components/brand/rich"
@@ -25,9 +26,9 @@ export function HomeCollection({ t, lang }: { t: HomeDict["collection"]; lang: L
 
         {/* Staggered grid: every second card drops down on wide screens */}
         <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4 xl:pb-16">
-          {t.products.map((p) => (
+          {t.products.map((p, i) => (
             <li key={p.name} className="xl:even:translate-y-16" data-product>
-              <ProductCard product={p} className="h-full" />
+              <ProductCard product={p} visual={visuals.home.collection[i]} className="h-full" />
             </li>
           ))}
         </ul>

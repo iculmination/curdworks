@@ -1,3 +1,4 @@
+import { visuals } from "@/content/visuals"
 import { ImageSlot } from "@/components/brand/image-slot"
 import { Rich } from "@/components/brand/rich"
 import { Container, Section, type SectionTheme } from "@/components/brand/section"
@@ -21,14 +22,14 @@ export function TechFeature({
     <Section id={f.id} theme={theme} name={`tech-${f.id}`}>
       <Container className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
         <div className={cn("relative lg:col-span-6", reversed && "lg:order-2 lg:col-start-7")}>
-          <ImageSlot label={f.image} ratio="4/5" className="rounded-[2.5rem]" />
+          <ImageSlot label={f.image} visual={visuals.technologies.features[f.id]?.main} ratio="4/5" className="rounded-[2.5rem]" />
           <div
             className={cn(
               "absolute -bottom-8 w-[38%] rounded-full bg-background p-2",
               reversed ? "-left-4 lg:-left-8" : "-right-4 lg:-right-8"
             )}
           >
-            <ImageSlot label={f.detailImage} shape="circle" compact />
+            <ImageSlot label={f.detailImage} visual={visuals.technologies.features[f.id]?.detail} shape="circle" />
           </div>
         </div>
 

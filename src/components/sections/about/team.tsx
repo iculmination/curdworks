@@ -1,3 +1,4 @@
+import { visuals } from "@/content/visuals"
 import { ButtonLink } from "@/components/brand/button-link"
 import { Rich } from "@/components/brand/rich"
 import { Container, Section } from "@/components/brand/section"
@@ -25,9 +26,9 @@ export function AboutTeam({ t, lang }: { t: AboutDict["team"]; lang: Locale }) {
 
         {/* Middle column drops down for an editorial rhythm */}
         <ul className="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 lg:pb-20">
-          {t.members.map((m) => (
+          {t.members.map((m, i) => (
             <li key={m.name} className="lg:[&:nth-child(3n+2)]:translate-y-20">
-              <TeamCard member={m} />
+              <TeamCard member={m} visual={visuals.about.team[i]} />
             </li>
           ))}
         </ul>

@@ -1,10 +1,19 @@
+import type { Visual } from "@/content/visuals"
 import { cn } from "@/lib/utils"
 import { ImageSlot } from "./image-slot"
 
 export type TimelineEntry = { year: string; title: string; text: string; image?: string }
 
 /** Row of the company timeline: big year | text | optional image. */
-export function TimelineItem({ entry, className }: { entry: TimelineEntry; className?: string }) {
+export function TimelineItem({
+  entry,
+  visual,
+  className,
+}: {
+  entry: TimelineEntry
+  visual?: Visual
+  className?: string
+}) {
   return (
     <li
       data-reveal
@@ -23,7 +32,7 @@ export function TimelineItem({ entry, className }: { entry: TimelineEntry; class
         <h3 className="display-3">{entry.title}</h3>
         <p className="text-pretty text-muted-foreground">{entry.text}</p>
       </div>
-      {entry.image && <ImageSlot label={entry.image} ratio="4/3" className="w-full md:max-w-xs md:justify-self-end" />}
+      {entry.image && <ImageSlot label={entry.image} visual={visual} ratio="4/3" className="w-full md:max-w-xs md:justify-self-end" />}
     </li>
   )
 }

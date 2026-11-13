@@ -1,3 +1,4 @@
+import { visuals } from "@/content/visuals"
 import { ImageSlot } from "@/components/brand/image-slot"
 import { Quote } from "@/components/brand/quote"
 import { Rich } from "@/components/brand/rich"
@@ -22,7 +23,7 @@ export function CareersPerks({ t }: { t: CareersDict["perks"] }) {
 
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <li data-reveal className="md:col-span-2 lg:row-span-2">
-            <ImageSlot label={t.image} ratio="auto" className="h-full min-h-80" />
+            <ImageSlot label={t.image} visual={visuals.careers.perks} ratio="auto" className="h-full min-h-80" />
           </li>
           {first.map((p, i) => (
             <Perk key={p.title} perk={p} n={i + 1} />

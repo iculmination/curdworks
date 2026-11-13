@@ -279,14 +279,21 @@
     inset 0 -0.15em 0.35em oklch(1 0 0 / 35%);
 }
 
-/* Hatched placeholder surface for image slots */
-@utility hatch {
-  background-color: color-mix(in oklch, var(--foreground) 6%, var(--background));
-  background-image: repeating-linear-gradient(
-    -45deg,
-    color-mix(in oklch, var(--foreground) 9%, transparent) 0 1px,
-    transparent 1px 11px
-  );
+/* Film grain over image slots (art and photos alike). Re-applies the
+   slot's own inset shadow (e.g. .hole) on top of the content. */
+@utility grain {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inherit;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px;
+    mix-blend-mode: multiply;
+    opacity: 0.35;
+    pointer-events: none;
+  }
 }
 
 /* Dotted leader line used in spec lists */

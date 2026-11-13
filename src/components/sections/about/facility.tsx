@@ -1,3 +1,4 @@
+import { visuals } from "@/content/visuals"
 import { ImageSlot } from "@/components/brand/image-slot"
 import { Rich } from "@/components/brand/rich"
 import { Container, Section } from "@/components/brand/section"
@@ -40,6 +41,7 @@ export function AboutFacility({ t }: { t: AboutDict["facility"] }) {
             <ImageSlot
               key={label}
               label={label}
+              visual={visuals.about.facility[i]}
               ratio="auto"
               className={cn("h-full", bento[i], i === 0 && "max-lg:col-span-2")}
             />
